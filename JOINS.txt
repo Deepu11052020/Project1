@@ -1,0 +1,26 @@
+-- Left join
+SELECT a.id,name
+FROM table_a a
+LEFT JOIN table_b b on b.id = a.id;
+
+-- RIGHT Joon
+SELECT a.id,name
+FROM table_a a
+RIGHT JOIN table_b b on b.id = a.id;
+
+-- INNER JOIN
+SELECT a.id,name
+FROM table_a a
+INNER JOIN table_b b on b.id = a.id;
+
+-- FULL OUTER JOIN
+SELECT a.id,name
+FROM table_a a
+INNER JOIN table_b b on b.id = a.id
+
+-- cross join
+SELECT a.ID,a.name,b.color
+FROM table_a  a
+CROSS  JOIN table_b b
+
+
