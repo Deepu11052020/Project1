@@ -1,0 +1,171 @@
+Python 
+1.What is init keyword ?
+the __init__ method in Python is a special method used for initializing newly created objects of a class.
+It's automatically called when a new instance of the class is created and allows you to set up initial attributes and perform initialization logic.
+
+2.What is self keyword ?
+in Python, the self keyword refers to the instance of the class itself. 
+It's used to access instance variables and methods within the class definition and is a required parameter for instance methods.
+ self allows you to distinguish between instance variables and local variables within class methods.
+
+3.What is lambda functon?
+ a lambda function in Python is a small, anonymous function that can have any number of parameters but can only contain a single expression. 
+ It's defined using the lambda keyword instead of the def keyword used for regular functions. Lambda functions are commonly used for short, 
+ one-time tasks where defining a formal function isn't necessary.
+ 
+4.Difference between lambda and normal function
+Lambda functions are anonymous functions defined using the lambda keyword, typically for simple, one-time tasks.
+Normal functions are defined using the def keyword, can have a name, and can contain multiple statements.
+Lambda functions are often used for short, concise operations, while normal functions are used for more complex tasks and reusable code.
+
+5.What are generators? When to use ? share one example
+generators in Python are functions that produce a sequence of values lazily, one at a time, using the yield keyword instead of return.
+hey're useful for generating large datasets or infinite sequences efficiently,
+as they generate values on-the-fly without storing the entire sequence in memory.
+ 
+6.Python is compiled or interpreted language ? what does it mean?
+Python is both compiled and interpreted.
+Python source code is compiled into bytecode (.pyc files) before execution.
+The Python interpreter then executes the bytecode.
+This combination of compilation and interpretation provides both flexibility and performance in Python programming.
+
+7.What is the difference between list and tuples in Python? 
+Lists are like dynamic arrays. They are mutable (modifiable) and are defined using square brackets []. 
+You can add, remove, or modify elements in a list.
+
+Tuples are immutable sequences of elements. Once created, they cannot be changed. 
+Tuples are defined using parentheses (). They are typically used for fixed collections of items.
+
+In essence, lists are for collections of items that may change, while tuples are for collections of items that should remain constant.
+
+8.What is the difference between list and set in Python?
+Lists:
+Ordered collections, elements are indexed and can be accessed by index.
+Can contain duplicate elements.
+Mutable (modifiable).
+Defined using square brackets [].
+Sets:
+Unordered collections, elements have no specific order and cannot be accessed by index.
+Contains only unique elements, duplicates are automatically removed.
+Mutable (modifiable).
+Defined using curly braces {}.
+Lists are for ordered collections with possible duplicates, 
+while sets are for unordered collections of unique elements. Lists are indexed and ordered, while sets are not.
+
+9.When to use dictionary?
+
+In simple terms, use a dictionary in Python when:
+
+You need to store data in key-value pairs, where each key maps to a specific value.
+You want fast lookup times based on keys.
+You have a collection of unique keys and you need to access corresponding values quickly.
+You're working with configuration settings, aggregating data, or grouping information based on some identifier.
+You want to efficiently handle sparse data structures, where only a small fraction of possible keys are used.
+In essence, dictionaries are like real-life dictionaries: you look up a word (the key) to find its definition (the value). 
+They're handy when you need to quickly find information based on some unique identifier.
+
+10.What are decorators? When to use ? share one example
+Decorators in Python are functions that modify the behavior of other functions or methods.
+They allow you to add functionality to functions without changing their original code.
+Decorators are commonly used for tasks like logging, authentication, caching, and validation.
+They are applied using the @decorator_name syntax.
+Decorators are a powerful tool for extending and customizing the behavior of functions in a flexible and reusable way.
+
+11.What are Iterators?
+Iterators are objects in Python that allow you to traverse through a collection of elements one by one.
+They follow the iteration protocol, implementing __iter__() and __next__() methods.
+Iterators provide lazy evaluation, generating elements on-demand.
+They raise a StopIteration exception when there are no more elements to iterate over.
+Iterators are used with iterable objects like lists, tuples, dictionaries, etc., enabling efficient and memory-friendly iteration.
+
+ 
+12.What is slicing?
+Slicing in Python is a technique to extract a portion of a sequence (like a list, tuple, or string) by specifying start, stop, and step arguments.
+It's done using square brackets [] with start:stop:step notation.
+Start index is inclusive, stop index is exclusive.
+If start is omitted, it defaults to the beginning of the sequence.
+If stop is omitted, it defaults to the end of the sequence.
+If step is omitted, it defaults to 1, meaning consecutive elements are selected.
+Slicing is a powerful and efficient way to manipulate sequences, enabling easy extraction of subsets of data.
+
+13.What is mutable and immutable?
+Mutable: Objects that can be changed after creation.
+Example: Lists, dictionaries, sets.
+Immutable: Objects that cannot be changed after creation.
+Example: Integers, floats, strings, tuples.
+Mutable objects allow modifications, while immutable objects do not.
+Immutable objects are often more memory-efficient and hashable.
+Understanding mutability is crucial for efficient and reliable coding in Python.
+
+14.Python is single thread or multithread?
+Python supports both single-threaded and multi-threaded programming.
+Single-threaded mode is the default and executes code sequentially.
+Multi-threading is possible with the threading module but doesn't achieve true parallelism due to the Global Interpreter Lock (GIL).
+Multi-threading is more suited for I/O-bound tasks.
+For true parallelism, consider using multiprocessing or external libraries.
+
+15.What is GIL
+The Global Interpreter Lock (GIL) is a mechanism in CPython that allows only one thread to execute Python bytecode at a time.
+It ensures thread safety but limits the effectiveness of multi-threading in CPU-bound tasks.
+Multi-threading can still provide concurrency benefits in I/O-bound tasks.
+Alternatives like multiprocessing are used for achieving true parallelism in CPU-bound tasks.
+
+16.What you don’t like about python?
+As an AI language model, I don't have personal opinions or feelings. However, I can provide common criticisms that some developers have expressed 
+about Python:
+Performance: Python can be slower than lower-level languages like C or C++, especially in CPU-intensive tasks, due to factors like the Global 
+Interpreter Lock (GIL) and dynamic typing.
+GIL Limitations: The Global Interpreter Lock (GIL) in CPython can limit the effectiveness of multi-threading for CPU-bound tasks, 
+as it allows only one thread to execute Python bytecode at a time.
+Packaging and Dependency Management: Python's packaging ecosystem (e.g., pip and PyPI) can sometimes lead to dependency management challenges,
+ such as conflicting dependencies or versioning issues.
+Whitespace Sensitivity: Python's significant whitespace, while promoting clean and readable code, can sometimes be frustrating for developers
+ who are accustomed to languages with explicit block delimiters.
+Global State and Mutable Defaults: Python allows mutable default arguments in function definitions, which can lead to unexpected behavior and bugs,
+ especially for inexperienced developers.
+Threading and Concurrency: While Python provides threading support, it may not be as effective for CPU-bound concurrency due to the GIL. 
+Asynchronous programming with asyncio can mitigate some of these limitations but requires a different programming paradigm.
+Mobile and Web Development: Python may not be as widely used for mobile app development or frontend web development compared to languages like Java,
+ Swift, or JavaScript.
+These criticisms aside, Python remains one of the most popular and versatile programming languages, valued for its simplicity, readability, 
+extensive standard library, and vibrant ecosystem. Many developers find that its strengths far outweigh its limitations for a wide range of
+applications.
+
+17.What is list Comprehension?
+list comprehension is a concise way to create lists in Python. Instead of writing a loop to populate a list, you can use a single line of code to
+ achieve the same result. It's like writing a compact loop directly inside square brackets [].
+For example, let's say you want to create a list containing squares of numbers from 0 to 9. You can do it with list comprehension like this:
+python
+Copy code
+squares = [x**2 for x in range(10)]
+This line of code creates a list where each element is the square of the corresponding number in the range from 0 to 9.
+ List comprehension makes your code more readable and concise compared to using a loop.
+
+18.What are Dunder methods? Give examples
+
+dunder methods (short for "double underscore" methods) are special methods in Python that have double underscores (__) at the beginning and end of 
+their names. They allow you to define custom behavior for built-in operations like object creation, printing, addition, comparison, and more.
+
+Here's an example of a simple dunder method:
+python
+
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return f"MyClass instance with value: {self.value}"
+obj = MyClass(10)
+print(obj)  # Output: MyClass instance with value: 10
+In this example, __init__ is a dunder method used to initialize objects, and __str__ is a dunder method used to provide a string representation of the
+ object when printed
+
+19.What does _init_ method do?
+
+The __init__ method in Python is like a constructor that initializes object attributes when they are created. It assigns values to object attributes 
+using self, which refers to the instance itself.
+
+20.Difference between array and numpy library.
+
+Array: Basic data structure in Python for storing elements of the same data type. Limited functionality compared to NumPy.
+NumPy Library: Powerful Python library for numerical computing. Provides multidimensional arrays (ndarrays) and extensive mathematical functions.
+ Offers more versatility and efficiency compared to arrays.
