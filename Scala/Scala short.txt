@@ -1,0 +1,104 @@
+Scala
+1.What is a trait ? when to use ? 
+A trait is a reusable set of methods and fields that can be mixed into a class to provide additional behavior. Use traits for code reusability, 
+modularity, avoiding the diamond problem,and promoting composition over inheritance.
+
+2.Difference between trait and sealed trait?
+Trait: Blueprint for behavior, can be mixed into classes for reuse.
+Sealed Trait: Like a trait, but inheritance restricted to same file or package. Used for exhaustive pattern matching.
+
+3.What is an abstract class? 
+An abstract class is a blueprint for other classes. It can contain abstract methods without implementation. 
+Subclasses must implement these methods.
+
+4.What is the difference between an java interface and a scala trait?
+Java Interface: Can only contain method signatures and constants. Doesn't allow concrete method implementations. Supports multiple inheritance.
+Scala Trait: Can contain method signatures, concrete method implementations, and fields. Supports multiple inheritance. 
+Can also have state and define behavior.
+
+5.What is a singleton 
+
+A singleton is a design pattern that ensures a class has only one instance and provides a global point of access to that instance.
+ It typically involves a private constructor, a static method for accessing the instance, and lazy initialization.
+ It's commonly used for managing global resources or state.
+
+6.What is a higher order function?
+
+A higher-order function is a function that either takes another function as an argument or returns a function as its result.
+
+7.What is a closure 
+A closure is a function that retains access to variables from its enclosing scope even after that scope has finished executing. 
+It encapsulates both the code and the environment in which it was created.
+
+8.What is a companion object? What are the advantages ? example
+A companion object in Scala is an object with the same name as a class defined in the same file. It provides a place for static methods, 
+factory methods, and shared constants related to the class. It enhances code readability, allows shared access to private members, and facilitates 
+static-like behavior.
+
+9.Nil vs Null vs null vs Nothing vs None vs Unit 
+Nil: An empty list.
+Null: Represents a null reference.
+null: The actual null value.
+Nothing: Represents a value that never exists.
+None: Represents the absence of a value.
+Unit: Represents the absence of a meaningful value, like void.
+
+10.What is pure function?
+
+A pure function always produces the same output for the same input and has no side effects
+
+11.What is SBT and how have you used it? 
+
+SBT (Simple Build Tool) is a Scala build tool used for project setup, dependency management, building, testing, and packaging.
+ It simplifies the build process and offers powerful features for Scala projects.
+ 
+12.What is currying?
+
+Currying in Scala means breaking down a function with multiple arguments into a series of functions, each taking one argument. 
+This allows for partial function application and greater flexibility when working with functions.
+
+13.Difference between currying and higher-order functions
+
+Certainly! Here's a simplified explanation:
+Currying: Currying is about breaking down a function with multiple arguments into a series of functions,
+ each taking one argument. It enables partial function application.
+
+Higher-order Functions: Higher-order functions are functions that can take other functions as arguments or return functions as results. 
+They allow for more flexible and expressive coding patterns.
+
+14.Difference between var and val?
+In simple terms:
+var: Mutable variable. Its value can be reassigned.
+val: Immutable variable. Once initialized, its value cannot be changed.
+
+15.What is case class?
+
+A case class in Scala is a special type of class primarily used for immutable data holding.
+ It automatically provides methods for equality comparison, pattern matching, and easy instantiation
+ 
+16.Why/when to use case class? Example
+Case classes in Scala are best used for defining immutable data structures and representing entities. They offer benefits like automatic property
+ accessors, structural equality, and seamless integration with pattern matching. They are particularly handy for scenarios where you need to work with
+ immutable data and want concise syntax for defining data structures.
+ 
+17.Difference between case class and normal class?
+
+Case classes offer concise syntax for immutable data structures, providing automatic property accessors, structural equality,
+ and seamless pattern matching integration. They're ideal for immutable entities, reducing boilerplate compared to normal classes.
+ 
+18.Scala type hierarchy?
+Scala's type hierarchy consists of:
+
+Any: The root type of all Scala types.
+AnyVal: Superclass of all value types.
+AnyRef: Superclass of all reference types.
+Value types: Boolean, Byte, Short, Int, Long, Float, Double, Char, and Unit.
+
+19.What are partially applied functions?
+Partially applied functions allow you to fix some arguments of a function, creating a new function with fewer parameters. This enhances code 
+flexibility and reusability.
+
+20.What is tail recursion.
+
+Tail recursion is a special form of recursion where the recursive call is the last operation performed by the function. 
+This allows the compiler to optimize it into an iterative loop, preventing stack overflow errors and improving performance for deep recursive calls.
