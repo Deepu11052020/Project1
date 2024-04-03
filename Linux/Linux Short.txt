@@ -1,0 +1,107 @@
+1. How do you display the first 10 lines of a file using the command line?
+head -n 10 filename
+
+2. How do you display the last 5 lines of a file using the command line?
+tail -n 5 filename
+
+3. How do you sort the contents of a file in ascending order using the command line?
+sort filename  --Ascending order
+sort -r filename --Dscending order
+
+4. How do you count the number of occurrences of a specific word in a file using the command line?
+To count the occurrences of a specific word in a file using the command line:
+grep -o 'word' filename (dialying the word)
+grep -c 'word' filename (word count)
+Replace 'word' with the specific word you want to count and filename with the name of the file. This command searches for the word in the file and 
+counts the number of occurrences.
+
+5. How do you find and replace a specific word in a file using the command line?
+
+To find and replace a specific word in a file using the command line, use sed:
+
+sed -i 's/old_word/new_word/g' filename
+Replace old_word with the word you want to replace and new_word with the replacement. Use the -i option to modify the file in place.
+
+6. How do you display the size of a file in human-readable format using the command line?
+ls -lh filename --> showing permissions
+ls -lhs filename --> showing everything
+ls -s filename --> file size
+
+7. How do you display the current date and time in a specific format using the command line?
+You can display the current date and time in a specific format using the date command with the format option %Y-%m-%d %H:%M:%S.
+date +"%Y-%m-%d %H:%M:%S"
+
+8. How do you find the process ID (PID) of a running process using the command line?
+To find the process ID (PID) of a running process using the command line, you can use the pgrep command followed by the process name. For example:
+pgrep <process_name>
+This command will return the PID of the running process with the specified name.
+
+9. How do you kill a process using its process ID (PID) using the command line?
+To kill a process using its process ID (PID) using the command line, you can use the kill command followed by the PID. For example:
+kill <PID>
+Replace <PID> with the actual process ID of the process you want to terminate.
+
+10. How do you create a compressed tar archive of a directory and exclude specific files from it using the command line?
+To create a compressed tar archive of a directory while excluding specific files:
+tar -czvf archive_name.tar.gz --exclude="file_to_exclude" directory_to_compress
+Replace archive_name.tar.gz with the desired archive name, file_to_exclude with the file you want to exclude, 
+and directory_to_compress with the directory you want to compress.
+
+11. How do you set an environment variable in Linux using the command line?
+To set an environment variable in Linux using the command line, use the export command followed by the variable name and its value. For example:
+export VARIABLE_NAME=value
+This sets the environment variable VARIABLE_NAME to the specified value.
+
+12. How do you list all installed packages on a Debian-based Linux distribution using the command line?
+To list all installed packages on Debian-based Linux:
+dpkg --get-selections
+
+13. How do you change the permissions of a file to read-only for the owner and group using the command line?
+chmod 440 filename.
+
+14. How do you find all files with a specific extension in a directory and its subdirectories using the command line?
+To find files with a specific extension in a directory and its subdirectories:
+find /path/to/directory -type f -name "*.extension"
+Replace /path/to/directory with the directory path and "*.extension" with the desired file extension, like "*.txt" for text files.
+
+15. How do you create a backup of a file with a timestamp in its filename using the command line?
+To create a backup of a file with a timestamp in its filename using the command line, use:
+cp original_file_path backup_directory/$(date +'%Y%m%d%H%M%S')_filename.extension
+Replace original_file_path with the path to the original file, backup_directory with the path to the backup directory, 
+and filename.extension with the desired name for the backup file.
+
+16. How do you search for a specific string in all files within a directory and its subdirectories using the command line?
+To search for a specific string in all files within a directory and its subdirectories using the command line:
+grep -r "search_string" directory_path
+Replace "search_string" with the string you want to search for and directory_path with the path to the directory where you want to start the search. 
+This command recursively searches all files within the specified directory and its subdirectories for the given string.
+
+17. How do you display the current network configuration (IP address, subnet mask, etc.) using the command line?
+here are the commands with syntax:
+Using ip addr show:
+ip addr show
+Using ifconfig:
+ifconfig
+Both commands will display detailed network configuration information, including IP addresses, subnet masks, and other network-related details.
+
+
+18. How do you create a new user with a specific home directory and set their password using the command line?
+sudo useradd -m -d /home/john Deepu
+sudo passwd john
+passwd: Hamsini
+
+19. How do you display the available disk space on your system using the command line?
+To display the available disk space on your system using the command line, you can use the df command. Here's how:
+df -h
+This command will show you the available disk space on all mounted filesystems in a human-readable format (-h flag). 
+It will display information such as total size, used space, available space, and filesystem type for each mounted filesystem.
+
+20. How do you schedule a command or script to run at a specific time using the cron system?
+To schedule a command or script using cron:
+Open terminal: crontab -e
+Add schedule: * * * * * for every minute.
+Define command: command_to_run
+Save and exit.
+Example:
+* * * * * /path/to/script/my_script.sh
+This runs my_script.sh every minute. Adjust the schedule as needed.

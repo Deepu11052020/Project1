@@ -1,0 +1,174 @@
+1. How do you display the first 10 lines of a file using the command line?
+To display the first 10 lines of a file using the command line, you can use the head command with the -n option, specifying the number of lines 
+you want to display. Here's the command:
+head -n 10 filename
+Replace filename with the name of the file you want to display. This command will output the first 10 lines of the specified file to the terminal.
+
+2. How do you display the last 5 lines of a file using the command line?
+To display the last 5 lines of a file using the command line, you can use the tail command with the -n option, specifying the number of lines you
+ want to display. Here's the command:
+tail -n 5 filename
+Replace filename with the name of the file you want to display. This command will output the last 5 lines of the specified file to the terminal.
+
+3. How do you sort the contents of a file in ascending order using the command line?
+To sort the contents of a file in ascending order using the command line, you can use the sort command:
+sort filename
+Replace filename with the name of the file you want to sort. By default, the sort command sorts lines of text alphabetically in ascending order.
+
+4. How do you count the number of occurrences of a specific word in a file using the command line?
+To count the number of occurrences of a specific word in a file using the command line, you can use the combination of grep and wc commands:
+grep -o 'word' filename | wc -l
+Replace 'word' with the specific word you want to count, and filename with the name of the file.
+Here's how the command works:
+grep -o 'word' filename: This command searches for the specified word in the file and outputs each occurrence of the word on a separate line using the -o option.
+wc -l: This command counts the number of lines. Since each occurrence of the word is on a separate line, counting the lines gives the total number 
+of occurrences of the word
+
+5. How do you find and replace a specific word in a file using the command line?
+
+You can use the sed command in the following way to find and replace a specific word in a file:
+sed -i 's/old_word/new_word/g' file.txt
+example: 
+Replace old_word with the word you want to replace and new_word with the replacement word. file.txt is the name of the file you want to modify.
+ The -i option is used to edit the file in place.
+ 
+6. How do you display the size of a file in human-readable format using the command line?
+To display the size of a file in human-readable format using the command line, you can use the ls command with the -lh option:
+ls -lh filename
+This command will list the file along with its size in a human-readable format, such as kilobytes (K), megabytes (M), or gigabytes (G).
+
+7. How do you display the current date and time in a specific format using the command line?
+You can display the current date and time in a specific format using the date command in the terminal. Here's how you can do it:
+date +"%Y-%m-%d %H:%M:%S"
+This command will display the current date and time in the format: YYYY-MM-DD HH:MM:SS.
+
+8. How do you find the process ID (PID) of a running process using the command line?
+You can find the process ID (PID) of a running process using the pgrep command followed by the process name. For example:
+pgrep <process_name>
+This command will return the PID of the running process with the specified name.
+
+9. How do you kill a process using its process ID (PID) using the command line?
+To kill a process using its process ID (PID) using the command line, you can use the kill command followed by the PID. For example:
+kill <PID>
+Replace <PID> with the actual process ID of the process you want to terminate.
+
+10. How do you create a compressed tar archive of a directory and exclude specific files from it using the command line?
+ To create a compressed tar archive of a directory and exclude specific files from it using the command line, you can use the tar command 
+ with the --exclude option. Here's the general syntax:
+tar -czvf archive_name.tar.gz --exclude="file_to_exclude" directory_to_compress
+Replace archive_name.tar.gz with the desired name for your archive, file_to_exclude with the name of the file you want to exclude, 
+and directory_to_compress with the path to the directory you want to compress.
+You can specify multiple files to exclude by repeating the --exclude option for each file you want to exclude:
+
+tar -czvf archive_name.tar.gz --exclude="file1_to_exclude" --exclude="file2_to_exclude" directory_to_compress
+This command will create a compressed tar archive named archive_name.tar.gz of the specified directory while excluding the specified files.
+tar -czvf my_archive.tar.gz --exclude='testfile.txt' dir1
+
+
+
+11. How do you set an environment variable in Linux using the command line?
+To set an environment variable in Linux using the command line, you can use the export command followed by the variable name and its value.
+ Here's the syntax:
+export VARIABLE_NAME=variable_value
+Replace VARIABLE_NAME with the name of the environment variable you want to set and variable_value with the desired value.
+For example, to set an environment variable named MY_VAR with the value hello, you would use:
+export MY_VAR=hello
+After setting the environment variable, it will be available for use within the current shell session. 
+If you want the variable to be available in subsequent shell sessions, you can add the export command to your shell's configuration file
+ (e.g., .bashrc, .bash_profile, .profile).
+ 
+12. How do you list all installed packages on a Debian-based Linux distribution using the command line?
+To list all installed packages on a Debian-based Linux distribution using the command line, you can use the dpkg tool with the --get-selections option.
+Here's the command:
+dpkg --get-selections
+This command will display a list of all installed packages along with their status (installed, deinstalled, etc.). You can also use tools like apt 
+or apt-get to achieve similar results.
+
+13. How do you change the permissions of a file to read-only for the owner and group using the command line?
+To change the permissions of a file to read-only for the owner and group using the command line, 
+you can use the chmod command with the appropriate permissions:
+chmod 440 filename
+This command sets the file permissions to read-only for the owner and group, while allowing the owner to read and write, 
+and denies all permissions to others
+
+14. How do you find all files with a specific extension in a directory and its subdirectories using the command line?
+
+To find all files with a specific extension in a directory and its subdirectories using the command line, you can use the find command. 
+For example, to find all files with the .txt extension:
+find /path/to/directory -type f -name "*.txt"
+Replace /path/to/directory with the directory where you want to start the search. This command will recursively search in the specified 
+directory and its subdirectories for files with the .txt extension.
+
+15. How do you create a backup of a file with a timestamp in its filename using the command line?
+To create a backup of a file with a timestamp in its filename using the command line, you can use the cp command along with date command to
+generate the timestamp. Here's a command you can use:
+cp /path/to/original/file /path/to/backup/directory/$(date +'%Y%m%d%H%M%S')_filename.extension
+Replace /path/to/original/file with the path to the original file, /path/to/backup/directory/ with the path to the directory where you want to
+store the backup, filename.extension with the name of the original file and its extension.
+For example, if you have a file named example.txt located in /home/user/Documents, and you want to create a backup in /home/user/Backups, 
+you can use the following command:
+cp /home/user/Documents/example.txt /home/user/Backups/$(date +'%Y%m%d%H%M%S')_example.txt
+This will create a backup file with the current timestamp appended to its filename in the specified backup directory.
+
+16. How do you search for a specific string in all files within a directory and its subdirectories using the command line?
+To search for a specific string in all files within a directory and its subdirectories using the command line, you can use the grep command 
+with the -r (or --recursive) option. Here's the command:
+
+grep -r "search_string" directory_path
+Replace "search_string" with the string you want to search for and directory_path with the path to the directory where you want to start the search.
+
+This command recursively searches all files within the specified directory and its subdirectories for the given string and prints out the 
+matching lines along with the filenames where the matches occur.
+
+
+17. How do you display the current network configuration (IP address, subnet mask, etc.) using the command line?
+To display the current network configuration, including the IP address, subnet mask, and other details, you can use the ip command on 
+Linux-based systems. Here's how:
+ip addr show
+This command will output detailed information about all network interfaces on your system, including their IP addresses, subnet masks, and more.
+If you only want to display the IP address and subnet mask of a specific interface, you can specify the interface name. For example, 
+to show the configuration for the eth0 interface:
+ip addr show eth0
+Alternatively, you can use the deprecated ifconfig command, but it's recommended to use ip command for more modern systems:
+ifconfig
+This will also display network interface configuration, including IP addresses and subnet masks.
+Choose the appropriate command based on your system and preferences.
+
+18. How do you create a new user with a specific home directory and set their password using the command line?
+To create a new user with a specific home directory and set their password using the command line, you can use the useradd and passwd commands. 
+Here's how to do it:
+Use the useradd command to create a new user with the desired home directory:
+sudo useradd -m -d /path/to/home/directory username
+Replace /path/to/home/directory with the desired home directory path and username with the username you want to create.
+Set a password for the new user using the passwd command:
+sudo passwd username
+Replace username with the username you created in step 1. You will be prompted to enter and confirm the password for the new user.
+After executing these commands, the new user will be created with the specified home directory and password.
+
+19. How do you display the available disk space on your system using the command line?
+To display the available disk space on your system using the command line, you can use the df command. Here's how:
+df -h
+This command will show you the available disk space on all mounted filesystems in a human-readable format (-h flag). 
+It will display information such as total size, used space, available space, and filesystem type for each mounted filesystem.
+
+20. How do you schedule a command or script to run at a specific time using the cron system?
+To schedule a command or script to run at a specific time using the cron system, you can follow these steps:
+Open your terminal or command prompt.
+Use the crontab -e command to edit your user's crontab file. This file contains the list of scheduled tasks for your user.
+Add a new line to the crontab file with the scheduling information and the command you want to run.
+The syntax for scheduling tasks in cron is as follows:
+minute hour day_of_month month day_of_week command_to_run
+
+Here's what each field represents:
+minute: The minute when the command should run (0-59).
+
+hour: The hour when the command should run (0-23).
+day_of_month: The day of the month when the command should run (1-31).
+month: The month when the command should run (1-12 or Jan-Dec).
+day_of_week: The day of the week when the command should run (0-6 or Sun-Sat, where 0 and 7 represent Sunday).
+For example, to schedule a script named myscript.sh to run every day at 8:00 AM, you would add the following line to your crontab file:
+
+0 8 * * * /path/to/myscript.sh
+Save and close the crontab file. Your scheduled task will now run according to the specified schedule.
+Note: Make sure to replace /path/to/myscript.sh with the actual path to your script file. Additionally, 
+cron uses the system's timezone for scheduling tasks, so keep that in mind when specifying the time.
