@@ -1,0 +1,396 @@
+Hadoop
+1.Mention Hadoop distribution? Difference between CDH and CDP
+Hadoop is an open-source software framework for storing data and running applications on clusters of commodity hardware. 
+There are several distributions of Hadoop, including Cloudera's CDH (Cloudera Distribution for Hadoop) and Hortonworks'
+ HDP (Hortonworks Data Platform). After the merger of Cloudera and Hortonworks, a new distribution called CDP (Cloudera Data Platform) was released,
+ which is a combination of features from both CDH and HDP.
+ 
+CDP is designed to be the future of Cloudera, with a focus on enterprise data management and analytics. It offers cloud-native services for data 
+warehousing, machine learning, streaming ingest, and operational data stores. CDP supports multi-cloud, multi-function data management and analytics,
+ with a unified data catalog, consistent security and governance managed through a powerful control plane, providing single pane of glass visibility.
+ 
+CDH, on the other hand, is a traditional Hadoop distribution that includes HDFS, MapReduce, Hive, Spark, Pig, and other components. It is known for 
+its stability and is often used in production environments.
+CDP is the recommended choice for new users, as it is the platform that is seeing all development focus. However, if your organization is already
+ using CDH or HDP, there may be a migration path to CDP, but the specifics would depend on your current setup and requirements.
+
+2.Explain Hadoop Architecture
+Hadoop architecture is designed to handle large volumes of data on commodity hardware. It consists of several components:
+Hadoop HDFS: The Hadoop Distributed File System (HDFS) is the storage layer, which divides large data into blocks and stores them across slave machines.
+ HDFS is designed for use on commodity hardware, is scalable, fault-tolerant, and rack-aware.
+Hadoop YARN: Yet Another Resource Negotiator (YARN) is the resource management component, which schedules jobs and manages resources in the Hadoop
+ cluster.
+Hadoop MapReduce: MapReduce is the data processing component, which processes data in a distributed fashion. It consists of two phases:
+the map phase and the reduce phase.
+Zookeeper: Zookeeper is used for synchronization across a cluster, ensuring that all components are aware of each other's state.
+Hadoop is designed for use in large-scale data processing and is often used in big data analytics and machine learning applications. 
+It is known for its scalability, fault tolerance, and ability to process large volumes of data in parallel.
+
+
+3.Configuration files used during hadoop installation
+During Hadoop installation, several configuration files are used to set up the cluster. These files are divided into two types: read-only default 
+configuration and site-specific configuration.
+Read-only default configuration: These files define the default settings for Hadoop components. 
+They include:
+core-default.xml
+hdfs-default.xml
+mapred-default.xml
+Site-specific configuration: These files allow you to customize the Hadoop cluster settings according to your requirements. They include:
+core-site.xml
+hdfs-site.xml
+mapred-site.xml
+Additionally, you can control the Hadoop scripts found in the bin/ directory of the distribution by setting site-specific values via the hadoop-env.sh
+ and yarn-env.sh scripts.
+To configure the Hadoop cluster, you will need to configure the environment in which the Hadoop daemons execute as well as the configuration 
+parameters for the Hadoop daemons. HDFS daemons include NameNode, SecondaryNameNode, and DataNode, while YARN daemons include ResourceManager, 
+NodeManager, and WebAppProxy. MapReduce Job History Server is also configured if MapReduce is used.
+Some important configuration parameters include:
+fs.default.name: URI of NameNode.
+dfs.name.dir: Path on the local filesystem where the NameNode stores the namespace and transactions logs persistently.
+HADOOP_PID_DIR: The directory where the daemons' process id files are stored.
+HADOOP_LOG_DIR: The directory where the daemons' log files are stored.
+HADOOP_HEAPSIZE: The maximum amount of heapsize to use, in MB.
+For example, to configure Namenode to use parallelGC and a 4GB Java Heap, you would add the following statement in hadoop-env.sh:
+export HDFS_NAMENODE_OPTS="-XX:+UseParallelGC -Xmx4g"
+
+These configuration files are located in the etc/hadoop/ directory of the Hadoop installation directory.
+
+4.Difference between Hadoop fs and hdfs dfs
+hadoop fs is a more generic command that allows you to interact with multiple file systems, including Hadoop. 
+It can perform operations related to local or Hadoop distributed file systems.
+hdfs dfs is a command that is specific to HDFS, the Hadoop Distributed File System. It is used to execute operations on HDFS.
+In practice, hadoop fs and hdfs dfs commands become synonymous if the file system being used is HDFS. If you issue a hadoop fs command,
+ it will tell you that it has been deprecated and you should use hdfs dfs instead.
+Here are some examples of how these commands can be used:
+hadoop fs <args>: This command can be used when dealing with different file systems such as local, HDFS, etc.
+hdfs dfs <args>: This command is used when dealing with operations related to HDFS.
+It is recommended to use hdfs dfs instead of hadoop fs for HDFS operations, as hadoop fs is deprecated.
+
+5.Difference between Hadoop 2 and Hadoop 3
+
+Hadoop 2.x and Hadoop 3.x are versions of the Hadoop framework, which is an open-source software framework for storing and processing large data sets
+ in a distributed manner. The main differences between Hadoop 2.x and Hadoop 3.x include:
+Fault Tolerance: In Hadoop 2.x, fault tolerance is achieved through replication, which is not space-optimized. In Hadoop 3.x, erasure coding 
+is used for handling fault tolerance.
+Data Balancing: In Hadoop 2.x, the HDFS balancer is used for data balancing. In Hadoop 3.x, an intra-data node balancer is used, 
+which is invoked via the HDFS disk balancer CLI.
+Storage Scheme: Hadoop 2.x uses a 3x replication scheme, while Hadoop 3.x supports erasure encoding in HDFS.
+Storage Overhead: Hadoop 2.x has a storage overhead of 200% of HDFS, while Hadoop 3.x has a storage overhead of 50%.
+YARN Timeline Service: In Hadoop 2.x, the YARN timeline service has scalability issues. In Hadoop 3.x, the timeline service is improved 
+along with improving scalability and reliability of this service.
+Minimum Java Version: The minimum supported Java version for Hadoop 2.x is JAVA 7, while for Hadoop 3.x it is JAVA 8.
+Compatible File Systems: Hadoop 2.x supports HDFS (default), FTP, Amazon S3, and Windows Azure Storage Blobs (WASB) file systems. Hadoop 3.x 
+supports all file systems, including Microsoft Azure Data Lake filesystem.
+Name Node Recovery: In Hadoop 2.x, manual intervention is needed for the namenode recovery. In Hadoop 3.x, no manual intervention is required for 
+name node recovery.
+Standby NameNodes: Hadoop 3.x supports 2 or more standby nodes to provide additional fault tolerance, unlike Hadoop 2.0 that supports only two 
+NameNodes.
+These differences highlight the improvements and enhancements in Hadoop 3.x compared to Hadoop 2.x, making Hadoop 3.x a more advanced and compatible
+ version.
+
+6.What is replication factor ? why its important
+
+A replication factor refers to the number of copies of data that are maintained across a distributed system. In simpler terms, it's the number of 
+times data is duplicated or replicated to ensure redundancy and fault tolerance.
+Replication factors are crucial in distributed systems for several reasons:
+
+Fault tolerance: By storing multiple copies of data across different nodes or servers, a system can continue to operate even if some nodes 
+fail or become inaccessible. If one copy of the data is lost or corrupted, another copy can be used instead.
+
+Availability: Having multiple copies of data allows the system to serve read requests from different nodes, improving overall availability.
+Users can access data even if some nodes are experiencing issues or are unreachable.
+
+Performance: Replication can also improve read performance by allowing requests to be served from the nearest or least loaded node, reducing latency.
+Load balancing: Distributing data across multiple nodes helps balance the workload and prevents any single node from becoming overwhelmed with requests.
+
+However, replication comes with its own challenges and trade-offs. It increases storage requirements and imposes additional overhead for maintaining
+consistency among copies. Therefore, replication factors are typically chosen based on the specific requirements of the system, balancing factors
+such as fault tolerance, performance, and resource constraints.
+
+7.What if Datanode fails?
+
+If a data node fails in a distributed system with replication, the system can handle it in several ways:
+
+Automatic Failover: Many distributed systems are designed to detect when a data node fails. When a failure is detected, the system automatically 
+redirects requests to other available copies of the data stored on different nodes. This ensures uninterrupted service despite the failure.
+
+Data Recovery: Depending on the replication factor, there are still other copies of the data stored on other nodes. The system can recover the lost
+data by replicating it from the surviving copies. This process may involve copying data from the surviving nodes to replace the lost copy on
+the failed node.
+
+Rebalancing: After a data node fails and is replaced or restored, the system may need to rebalance data distribution across the nodes to maintain 
+consistency and optimal performance. This typically involves redistributing copies of data to ensure that each node has an appropriate amount of data
+and that replication factors are maintained.
+
+Repair Mechanisms: Some distributed systems have built-in repair mechanisms that automatically detect and repair inconsistencies or missing data 
+caused by node failures. These mechanisms ensure data integrity and consistency across the distributed system.
+Overall, the redundancy provided by replication ensures that even if a data node fails, the system remains operational and can recover 
+from the failure without losing data or significantly impacting performance.
+
+8.What if Namenode fails?
+If a NameNode fails in a Hadoop Distributed File System (HDFS), which is a common scenario in distributed systems like Hadoop:
+High Availability Configurations: In Hadoop High Availability (HA) configurations, there are typically two NameNodes running in an active-standby setup.
+If the active NameNode fails, the standby NameNode takes over seamlessly to ensure uninterrupted service.
+
+Checkpointing and Metadata Backup: HDFS periodically saves metadata snapshots to a separate directory called the Secondary NameNode. 
+These snapshots can be used to restore the file system's metadata in case of NameNode failure. Additionally, there might be backup mechanisms in place
+ to ensure that critical metadata is not lost.
+
+Manual Intervention: In some cases, if automatic failover is not configured or if there are issues with the failover process,
+ manual intervention may be required to restart or replace the failed NameNode. This process involves restoring the metadata from backups and 
+ ensuring that the system is back online.
+Cluster Downtime: In the worst-case scenario where both the active and standby NameNodes fail simultaneously or if there are complications in 
+the failover process, the Hadoop cluster may experience downtime until the NameNode(s) can be restored or replaced.
+Overall, the failover mechanisms and backup strategies implemented in Hadoop and similar distributed file systems aim to minimize downtime and
+ data loss in the event of NameNode failures.
+
+9.Why is block size 128 MB ? what if I increase or decrease the block size
+The default block size in Hadoop is 128 MB, although it can be adjusted based on specific use cases. Here's why it's typically set at 128 MB:
+
+Efficient Storage Utilization: Larger block sizes reduce the overhead associated with storing and managing a large number of small blocks. 
+With a larger block size, there are fewer metadata entries to manage, leading to better storage efficiency.
+
+Reduced NameNode Load: Each file and block in Hadoop is represented as metadata stored in the NameNode. Larger block sizes mean fewer metadata entries,
+ reducing the load on the NameNode and improving overall system performance.
+ 
+Optimized Data Transfer: Larger blocks enable Hadoop to efficiently transfer data between nodes during processing.
+ This reduces the overhead associated with initiating and managing data transfer operations.
+ 
+However, adjusting the block size can have implications:
+
+Increasing Block Size: Larger block sizes can improve performance for large sequential reads and writes, as there are fewer blocks to manage. 
+However, it may lead to increased data processing overhead for smaller files and decreased parallelism for map-reduce tasks.
+Decreasing Block Size: Smaller block sizes can improve performance for small files and workloads that require frequent data access. However, 
+it may lead to increased metadata overhead, as more blocks need to be managed by the NameNode, potentially impacting scalability and overall system 
+performance.
+Ultimately, the optimal block size depends on factors such as the size and nature of the data, the workload characteristics, and the hardware 
+infrastructure. Adjustments to the block size should be made based on performance testing and analysis to ensure that they align with the specific 
+requirements of the system.
+
+10.Small file problem
+The small file problem in Hadoop refers to the inefficiency of handling a large number of small files in Hadoop's HDFS (Hadoop Distributed File System). 
+This problem arises because HDFS is designed to handle large files efficiently, and when dealing with small files, it becomes less efficient due to 
+the following reasons:
+HDFS Block Size: HDFS is designed to handle files larger than the block size, which is typically 128 MB. When files are much smaller than this, 
+they cannot be efficiently handled, leading to inefficient data processing.
+Metadata Storage: Each file, directory, and block in HDFS is represented as an object in the namenode's memory. 
+For a large number of small files, 
+the memory required to store the metadata becomes high and can't scale beyond a certain limit.
+MapReduce Processing: In MapReduce, tasks process a block of input at a time. If the file is very small and there are a lot of them, each map task 
+processes very little input, and there are a lot more map tasks, which can slow down the overall cluster performance.
+To address the small file problem, Hadoop offers several solutions:
+SequenceFiles: SequenceFiles can be used to merge small files into one large file, which can be processed more efficiently. SequenceFiles are 
+splittable, allowing MapReduce to break them into chunks and operate on each chunk independently.
+HBase: HBase stores data in MapFiles (indexed SequenceFiles), which can be a good choice if you need to do MapReduce-style streaming analyses with occasional random lookups.
+HAR Files: HAR files can be used to store small files more efficiently.
+Task JVM Reuse: MapReduce can reuse the JVM for running multiple map tasks, reducing JVM startup overhead.
+MultiFileInputSplit: This feature can run more than one split per map, reducing the overhead of bookkeeping.
+By understanding the small file problem and implementing these solutions, you can improve the efficiency of handling small files in Hadoop and 
+ensure that your data processing is optimized for your specific use case.
+
+11.What is Rack awareness?
+Rack awareness is a feature in distributed systems, particularly in frameworks like Hadoop, that enables data locality optimization and fault tolerance
+ by understanding the physical network topology of the data center.
+
+Here's a breakdown:
+Understanding Rack: In data centers, servers are organized into racks, and racks are further organized into clusters. Racks typically share a common 
+network switch and are physically located close to each other.
+
+Data Replication: Rack awareness allows distributed systems to replicate data across multiple racks. Instead of just replicating data within the same 
+rack, which would make it vulnerable to rack-level failures, the system ensures that replicas are distributed across different racks within the data 
+center.
+
+Data Locality: When processing data, rack awareness helps in optimizing data locality. Tasks are scheduled to run on nodes that are closer to the data 
+they need, reducing network traffic and improving overall performance.
+Fault Tolerance: By spreading data replicas across different racks, rack awareness enhances fault tolerance. If an entire rack or network switch fails,
+ the system can still access data copies stored in other racks, ensuring continuity of service.
+In summary, rack awareness is a crucial aspect of distributed systems design, allowing for efficient data replication, optimizing data locality, 
+and enhancing fault tolerance by leveraging the physical network topology of the data center.
+
+12.What is SPOF ? how its resolved ?
+
+SPOF stands for Single Point of Failure. It refers to a component within a system whose failure would cause the entire system to fail or significantly 
+degrade. Resolving SPOFs involves implementing redundancy and fault-tolerant measures to eliminate or mitigate the impact of potential failures.
+Here's a concise explanation:
+Identification: Identify components in the system that, if they fail, could cause the entire system to fail or disrupt its functionality.
+Redundancy: Introduce redundancy for critical components. This could involve duplicating hardware, software, or network components so that if one fails, 
+another can take over seamlessly.
+Load Balancing: Distribute workload across multiple redundant components to prevent any single component from becoming overloaded or a bottleneck.
+Failover Mechanisms: Implement failover mechanisms to automatically switch to redundant components when a failure is detected. This ensures continuity
+ of service without manual intervention.
+Monitoring and Maintenance: Regularly monitor the system for potential points of failure and perform proactive maintenance to address issues before 
+they cause failures.
+By addressing SPOFs through redundancy, load balancing, failover mechanisms, and proactive maintenance, systems can achieve higher levels of 
+availability and reliability.
+
+
+13.Explain zookeeper?
+Apache ZooKeeper is a distributed coordination service that plays a crucial role in managing and coordinating the nodes in a Hadoop cluster. 
+It provides a centralized service for maintaining configuration information, naming, providing distributed synchronization, and offering group services. 
+In Hadoop, ZooKeeper is used for various purposes, such as:
+Storing configuration information: ZooKeeper stores configuration information that is shared by multiple Hadoop components, 
+like the locations of NameNodes in a Hadoop cluster or the addresses of JobTracker nodes.
+Coordinating distributed processes: ZooKeeper can be used to coordinate distributed processes, such as job scheduling and resource allocation, across 
+the nodes in a Hadoop cluster.
+Maintaining naming: ZooKeeper is used to maintain a centralized naming service for Hadoop components, which can be useful for identifying and locating 
+resources in a distributed system.
+ZooKeeper operates as a distributed file system and exposes a simple set of APIs that enable clients to read and write data. 
+It stores data in a tree-like structure called a znode, which can be thought of as a file or a directory in a traditional file system.
+ ZooKeeper uses a consensus algorithm to ensure that all of its servers have a consistent view of the data stored in the ensemble. 
+ One important feature of ZooKeeper is its ability to support the notion of a "watch." A watch allows a client to register for notifications when
+ changes occur to the data stored in ZooKeeper, which can be useful for monitoring changes and reacting to them in a distributed manner.
+In Hadoop, ZooKeeper is used for a variety of purposes, including:
+Storing configuration information: ZooKeeper is used to store configuration information that is shared by multiple Hadoop components.
+Providing distributed synchronization: ZooKeeper is used to coordinate the activities of various Hadoop components and ensure that they are 
+working together in a coordinated manner.
+Maintaining naming: ZooKeeper is used to maintain a centralized naming service for Hadoop components, which can be useful for identifying and locating
+ resources in a distributed system.
+ZooKeeper is an essential component of Hadoop and plays a crucial role in coordinating the activity of its various components.
+
+14.Difference between -put and -CopyFromLocal?
+
+In Hadoop, both -put and -copyFromLocal commands are used to upload files from the local file system to the Hadoop Distributed File System (HDFS). 
+However, there are some differences between the two:
+
+Command Syntax:
+
+-put: The -put command is used to upload files or directories from the local file system to HDFS. Its syntax is hadoop fs -put <localsrc> <dst>.
+-copyFromLocal: The -copyFromLocal command is also used to upload files or directories from the local file system to HDFS. 
+Its syntax is hadoop fs -copyFromLocal <localsrc> <dst>.
+Alias:
+-put: It's the canonical way to upload files to HDFS in Hadoop.
+-copyFromLocal: It's an alias for -put. Both commands perform the same operation of copying files from the local file system to HDFS.
+Historical Context:
+-put: The -put command has been a part of Hadoop since earlier versions.
+-copyFromLocal: The -copyFromLocal command was introduced as an alias for -put to make it consistent with other Hadoop commands, like -copyToLocal, 
+which is used to download files from HDFS to the local file system.
+In summary, both -put and -copyFromLocal commands serve the same purpose of uploading files from the local file system to HDFS in Hadoop. 
+The choice between them is primarily a matter of preference or consistency with other Hadoop commands used in your workflow.
+
+15.What is erasure coding?
+Erasure coding is a method used in data storage systems to provide redundancy and fault tolerance by distributing data across multiple disks or 
+nodes and generating additional redundant data, known as parity, which is then used for data recovery in case of disk or node failures.
+
+Here's a concise explanation:
+
+Redundancy: Erasure coding breaks data into fragments, generates additional fragments containing redundant information (parity), 
+and distributes them across multiple disks or nodes.
+
+Fault Tolerance: In case of disk or node failures, the system can reconstruct the lost data fragments using the remaining data and parity fragments. 
+This allows for data recovery without the need for complete replication of the original data.
+
+Efficiency: Erasure coding typically requires less storage overhead compared to traditional replication-based redundancy methods. 
+It can achieve the same level of fault tolerance with less storage space by generating only a small amount of redundant data.
+
+Usage: Erasure coding is commonly used in distributed storage systems, such as object storage, cloud storage, and distributed file systems, 
+where fault tolerance and efficient use of storage resources are crucial.
+
+Overall, erasure coding enhances fault tolerance and reduces storage overhead in distributed storage systems by generating 
+redundant data fragments that enable data recovery in case of failures.
+
+16.What is speculative execution?Speculative execution is a performance optimization technique used in computer systems, particularly in parallel and 
+distributed computing environments. Here's a succinct overview:
+
+Parallel Processing: In parallel computing, tasks are divided into smaller sub-tasks and executed concurrently on multiple processors or cores to 
+improve overall performance and efficiency.
+
+Task Duplication: Speculative execution involves duplicating tasks or computations across multiple processors or nodes, allowing them to execute
+ in parallel.
+
+Hedging Against Delays: It's employed to hedge against potential delays or slow execution of certain tasks. Instead of waiting for a slow task to 
+complete, speculative execution starts duplicate tasks concurrently on other resources.
+
+Early Completion: If the original task completes before the speculative task, the duplicate execution is discarded, avoiding any wasted computational
+ resources.
+
+Improved Performance: Speculative execution can improve overall system performance by maximizing resource utilization and reducing idle time.
+
+Usage: It's commonly used in distributed computing frameworks like Hadoop and Spark for tasks like map-reduce, where speculative execution helps
+ mitigate the impact of slow-running or straggler tasks on job completion times.
+
+In summary, speculative execution enhances performance in parallel and distributed computing environments by duplicating and executing tasks 
+concurrently, thereby mitigating the impact of delays and improving resource utilization.
+
+
+17.Explain Yarn Architecture
+The YARN (Yet Another Resource Negotiator) architecture is a key component of Apache Hadoop that manages resources and schedules tasks in a distributed computing environment. Here's a brief explanation:
+
+Resource Manager (RM):
+
+Centralized component responsible for managing and allocating resources across the cluster.
+Two main components: Scheduler and ApplicationManager (AM).
+Scheduler schedules resources to applications based on configurable policies.
+ApplicationManager manages the lifecycle of applications, handling submission, scheduling, and monitoring.
+Node Manager (NM):
+
+Per-node component responsible for managing resources (CPU, memory, etc.) on individual nodes.
+Reports node resource utilization to the Resource Manager and manages the execution of containers.
+Container:
+
+Lightweight, isolated execution environment allocated by Node Manager.
+Represents resources (CPU, memory) allocated to a specific task or application.
+Containers host application code and execute tasks.
+Application Master (AM):
+
+Per-application component responsible for negotiating resources from the Resource Manager and managing task execution.
+Communicates with Node Managers to launch containers and monitors their progress.
+Ensures application-specific logic (e.g., fault tolerance, data locality) is implemented during task execution.
+Client:
+
+Initiates application submission to the YARN cluster.
+Communicates with the Resource Manager to request resources for the application.
+Receives status updates and application results.
+In summary, YARN decouples resource management and job scheduling from MapReduce processing, allowing for a more flexible and scalable framework 
+that can support various processing paradigms beyond MapReduce, such as Spark, Tez, and others. It provides a centralized Resource Manager and per-node Node Managers to efficiently manage and allocate resources across the cluster.
+
+18.How does ApplicationManager and Application Master  differ
+
+The ApplicationManager and Application Master are both components within the YARN (Yet Another Resource Negotiator) architecture, but they serve different roles:
+
+ApplicationManager:
+
+It's part of the Resource Manager.
+Manages the lifecycle of applications submitted to the YARN cluster.
+Handles application submission, scheduling, and monitoring.
+Allocates resources to applications based on policies set by the scheduler.
+Application Master:
+
+It's a per-application component.
+Negotiates resources for a specific application from the Resource Manager.
+Manages the execution of tasks within the allocated resources.
+Communicates with Node Managers to launch and monitor containers for executing tasks.
+Ensures application-specific logic, such as fault tolerance and data locality, is implemented during task execution.
+In summary, while the ApplicationManager is a part of the Resource Manager responsible for managing the lifecycle of all applications in the cluster, 
+the Application Master is a per-application component responsible for negotiating resources and managing task execution for a specific application.
+
+19.Explain Mapreduce working?
+MapReduce is a programming model and processing framework designed for processing and generating large datasets in parallel across a distributed 
+cluster. Here's a concise explanation of how MapReduce works:
+
+Map Phase:
+
+Input data is divided into smaller chunks called splits.
+The Map function is applied to each split independently, producing intermediate key-value pairs.
+Each Map task processes a split of data and emits intermediate key-value pairs, typically performing filtering, transformation,
+ or extraction operations.
+Shuffle and Sort:
+
+Intermediate key-value pairs from all Map tasks are shuffled and sorted by key across the cluster.
+Key-value pairs with the same key are grouped together, preparing them for the Reduce phase.
+Reduce Phase:
+
+Each unique intermediate key is passed to a Reduce task.
+The Reduce function is applied to all values associated with the same key, producing output key-value pairs.
+Reduce tasks aggregate and process the intermediate results from the Map phase, typically performing summarization or aggregation operations.
+Output:
+
+The output key-value pairs from the Reduce tasks are written to the output destination, such as a distributed file system or a database.
+The final output represents the result of processing the input data using the MapReduce algorithm.
+In summary, MapReduce divides large datasets into smaller chunks, processes them in parallel using the Map function, shuffles and sorts 
+intermediate results, and then aggregates and summarizes them using the Reduce function to produce the final output. 
+This approach enables scalable and efficient processing of big data across distributed computing clusters.
+
+20.How many mappers are created for 1 GB file?
+21.How many reducers are created for 1 GB file?
+22.What is combiner?
+23.What is partitioner?

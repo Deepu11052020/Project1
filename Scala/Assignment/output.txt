@@ -1,0 +1,13 @@
+Task1 output:
+C:\Users\deepu\.jdks\corretto-1.8.0_402\bin\java.exe...
+
+Maximum temperature: 60.2
+
+Process finished with exit code 0
+
+Task2 output:
+C:\Users\deepu\.jdks\corretto-1.8.0_402\bin\java.exe...
+2, s1
+1, s2
+
+Process finished with exit code 0

@@ -1,0 +1,150 @@
+Hadoop
+1.Mention Hadoop distribution? Difference between CDH and CDP
+
+Hadoop is a software framework for storing and processing data on commodity hardware. Cloudera's CDH and Hortonworks' HDP are Hadoop distributions.
+ After the merger of Cloudera and Hortonworks, Cloudera Data Platform (CDP) was released, which combines features from CDH and HDP. CDP is designed 
+ for enterprise data management and analytics, offering cloud-native services for data warehousing, machine learning, streaming ingest, 
+ and operational data stores. CDP supports multi-cloud, multi-function data management and analytics, with a unified data catalog, consistent 
+ security and governance managed through a powerful control plane. CDP is recommended for new users, while existing CDH and HDP users may need 
+ to migrate to CDP.
+ 
+2.Explain Hadoop Architecture
+Hadoop architecture is designed to handle large volumes of data on commodity hardware. 
+It consists of HDFS (Hadoop Distributed File System) for storage, 
+YARN (Yet Another Resource Negotiator) for resource management, 
+MapReduce for data processing, and
+Zookeeper for synchronization. 
+Hadoop is scalable, fault-tolerant, and suitable for big data analytics and machine learning applications.
+
+3.Configuration files used during hadoop installation
+During Hadoop installation, several configuration files are used to set up the cluster. These include read-only default configuration files and 
+site-specific configuration files. Some important configuration parameters include fs.default.name, dfs.name.dir, HADOOP_PID_DIR, HADOOP_LOG_DIR, 
+and HADOOP_HEAPSIZE. Configuration files are located in the etc/hadoop/ directory of the Hadoop installation directory.
+
+4.Difference between Hadoop fs and hdfs dfs
+The difference between hadoop fs and hdfs dfs is that hadoop fs is a more generic command that can interact with multiple file systems, while hdfs dfs
+ is a command specific to HDFS. In practice, they are synonymous when dealing with HDFS. It is recommended to use hdfs dfs for HDFS operations.
+
+
+5.Difference between Hadoop 2 and Hadoop 3
+The main differences between Hadoop 2.x and Hadoop 3.x include:
+Fault tolerance: Hadoop 2.x uses replication, while Hadoop 3.x uses erasure coding.
+Data balancing: Hadoop 2.x uses the HDFS balancer, while Hadoop 3.x uses an intra-data node balancer.
+Storage scheme: Hadoop 2.x uses a 3x replication scheme, while Hadoop 3.x supports erasure encoding in HDFS.
+Storage overhead: Hadoop 2.x has a storage overhead of 200% of HDFS, while Hadoop 3.x has a storage overhead of 50%.
+YARN timeline service: Hadoop 2.x has scalability issues, while Hadoop 3.x improves scalability and reliability.
+Minimum Java version: Hadoop 2.x requires JAVA 7, while Hadoop 3.x requires JAVA 8.
+Compatible file systems: Hadoop 2.x supports HDFS, FTP, Amazon S3, and Windows Azure Storage Blobs. Hadoop 3.x supports all file systems,
+ including Microsoft Azure Data Lake filesystem.
+Name Node Recovery: Hadoop 3.x supports automatic recovery, while Hadoop 2.x requires manual intervention.
+Standby NameNodes: Hadoop 3.x supports 2 or more standby nodes, while Hadoop 2.0 supports only two NameNodes.
+These differences highlight the improvements and enhancements in Hadoop 3.x compared to Hadoop 2.x, making Hadoop 3.x a more advanced and compatible version.
+
+
+6.What is replication factor ? why its important
+ a replication factor is the number of copies of data stored in a distributed system. It's important because it ensures fault tolerance, availability,
+ and performance by having redundant copies of data across multiple nodes.
+
+7.What if Datanode fails?
+
+If a data node fails in a distributed system with replication:
+Automatic failover redirects requests to other available copies.
+Data recovery is possible from remaining copies on other nodes.
+Rebalancing may be needed to maintain optimal data distribution.
+Repair mechanisms ensure data integrity and consistency.
+
+8.What if Namenode fails?
+In High Availability setups, the standby NameNode takes over.
+Periodic metadata backups to Secondary NameNode enable restoration.
+Manual intervention may be needed if automatic failover fails.
+Cluster downtime may occur if failover processes encounter issues.
+
+9.Why is block size 128 MB ? what if I increase or decrease the block size
+
+The default block size of 128 MB in Hadoop is chosen for efficiency:
+It optimizes storage and reduces metadata overhead.
+Larger blocks improve data transfer and reduce NameNode load.
+Adjusting the block size:
+Increasing can enhance performance for large files but may hinder small file processing.
+Decreasing can improve small file performance but may increase metadata overhead and reduce scalability.
+
+10.Small file problem
+The small file problem refers to challenges faced in distributed file systems, like Hadoop, when dealing with a large number of small files. 
+This can lead to:
+Increased metadata overhead, straining the NameNode.
+Inefficient resource utilization during data processing.
+Performance bottlenecks and scalability issues.
+Mitigation strategies include consolidating small files, using optimized file formats, or employing archiving techniques to reduce overhead
+ and improve efficiency.
+
+11.What is Rack awareness?
+Rack awareness in distributed systems like Hadoop ensures:
+Data replication across racks for fault tolerance.
+Optimized data locality, reducing network traffic.
+Improved fault tolerance by spreading data across racks.
+
+12.What is SPOF ? how its resolved ?
+A Single Point of Failure (SPOF) is a non-redundant part of a system that, if dysfunctional, would cause the entire system to fail. To eliminate SPOFs,
+ conduct a single point of failure risk assessment across hardware, software/providers/services, and people. Implement multi-tier architectures or 
+ multiple load balancers to mitigate SPOFs. In Hadoop, ZooKeeper is a distributed coordination service that helps manage and maintain shared data
+ in a distributed environment, providing services like naming, configuration management, cluster management, and highly reliable data registry.
+
+13.Explain zookeeper?
+Apache ZooKeeper is a distributed coordination service used in Hadoop for managing and maintaining shared data in a distributed environment. 
+It provides services like naming, configuration management, cluster management, leader election, locking and synchronization, and highly reliable 
+data registry. ZooKeeper uses consensus algorithms to ensure consistency and supports watches for notifications on data changes. It is used in Hadoop
+ for storing configuration information, coordinating distributed processes, and maintaining naming.
+
+14.Difference between -put and -CopyFromLocal?
+-put and -copyFromLocal both upload files to HDFS.
+They have the same functionality; -copyFromLocal is an alias for -put.
+Use either based on preference or consistency in your workflow.
+
+15.What is erasure coding?
+Erasure coding is a method for data storage that generates redundant fragments (parity) distributed across multiple disks or nodes. 
+It provides fault tolerance by allowing data recovery from lost fragments, offering efficiency compared to replication.
+
+16.What is speculative execution?
+Speculative execution duplicates tasks to run them concurrently, hedging against delays and improving performance
+ in parallel and distributed computing.
+
+17.Explain Yarn Architecture
+
+YARN architecture consists of:
+
+Resource Manager: Allocates resources and schedules tasks.
+Node Manager: Manages resources on individual nodes.
+Application Master: Negotiates resources and manages task execution per application.
+Container: Lightweight, isolated execution environment for tasks.
+Client: Submits applications and interacts with the Resource Manager.
+
+18.How does ApplicationManager and Application Master  differ?
+ApplicationManager: Part of Resource Manager, manages application lifecycle.
+Application Master: Per-application component, negotiates resources and manages task execution.
+
+19.Explain Mapreduce working?
+Map phase: Processes input data, emits intermediate key-value pairs.
+Shuffle and Sort: Groups and sorts intermediate pairs by key.
+Reduce phase: Aggregates values with the same key, produces output.
+Output: Final result written to destination.
+
+20.How many mappers are created for 1 GB file?
+
+If the default block size of 128 MB is used:
+
+1 GB file = 8 blocks
+8 mapper tasks would be created to process the entire file.
+
+21.How many reducers are created for 1 GB file?
+
+The number of reducers for a 1 GB file in Hadoop:
+
+Depends on user configuration or defaults.
+Without explicit configuration, it may default to a single reducer.
+Users can adjust based on data size and job requirements.
+
+22.What is combiner?
+a combiner is a mini-reducer that aggregates data locally after the map phase to reduce network traffic and improve performance in MapReduce jobs.
+
+23.What is partitioner?
+a partitioner in Hadoop distributes intermediate key-value pairs among reducers, ensuring even workload distribution for efficient processing.
