@@ -1,0 +1,6 @@
+customer_id,product_name,order_count,rank_order
+B,sushi,2,1
+B,ramen,2,1
+B,curry,2,1
+C,ramen,3,1
+A,ramen,3,1

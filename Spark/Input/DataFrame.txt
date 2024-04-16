@@ -1,0 +1,6 @@
+This is a sample text file.
+It contains some words for testing purposes.
+The words in this file will be counted to demonstrate word 
+count using Spark DataFrame.
+Each word may appear multiple times,
+ and we will count how many times each word occurs.
