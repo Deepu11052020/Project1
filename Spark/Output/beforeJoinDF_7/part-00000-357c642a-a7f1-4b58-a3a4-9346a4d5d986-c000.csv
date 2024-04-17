@@ -1,0 +1,5 @@
+customer_id,product_name,last_purchase_date_before_join
+A,sushi,2021-01-01
+A,curry,2021-01-01
+B,sushi,2021-01-04
+B,curry,2021-01-02
